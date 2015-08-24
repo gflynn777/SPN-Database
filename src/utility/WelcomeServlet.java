@@ -1,4 +1,4 @@
-package com.spdb;
+package utility;
 
 import java.io.IOException;
 import java.sql.SQLException;

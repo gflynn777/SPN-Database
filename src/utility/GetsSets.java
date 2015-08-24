@@ -1,4 +1,4 @@
-package com.spdb;
+package utility;
 
 public class GetsSets {
 	

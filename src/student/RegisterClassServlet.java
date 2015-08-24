@@ -1,4 +1,4 @@
-package Student;
+package student;
 //ANGELO
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utility.DBConnection;
+import utility.DBManager;
+import utility.GetsSets;
+
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
-import com.spdb.DBConnection;
-import com.spdb.DBManager;
-import com.spdb.GetsSets;
 
 /**
  * Servlet implementation class RegisterClassServlet

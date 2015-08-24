@@ -1,4 +1,4 @@
-package Professor;
+package admin;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.spdb.DBManager;
-import com.spdb.GetsSets;
+import utility.DBManager;
+import utility.GetsSets;
 
 /**
  * Servlet implementation class CourseServlet
  */
-@WebServlet("/ProfCourseServlet")
-public class ProfCourseServlet extends HttpServlet {
+@WebServlet("/CourseServlet")
+public class CourseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProfCourseServlet() {
+    public CourseServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,14 +41,18 @@ public class ProfCourseServlet extends HttpServlet {
 		String cname = request.getParameter("cname");
 		String cid = request.getParameter("cid");
 		String section = request.getParameter("section");
-		String rmsize= request.getParameter("rmsize");
-		boolean addedCourse = false;
-		String netid = (String)request.getSession().getAttribute("netid");
-		
+		String tid = request.getParameter("tid");
+		int x = 0;
+		try {
+			DBManager.generateSpns(cid, Integer.parseInt(section));
+		} catch (NumberFormatException | ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		//Create a GLOBAL VARIABLE out of cid
 		request.getSession().setAttribute("sharedId", cid);//add to session
 		
-		if (cname == "" || cid == "" || section == "" || rmsize=="")
+		if (cname == "" || cid == "" || section == "")
 		{
 			String nuMessage = "There was a problem with the information entered."
 					+ " Please try again!";
@@ -62,39 +66,19 @@ public class ProfCourseServlet extends HttpServlet {
 			set.setCname(request.getParameter("cname"));
 			set.setCid(request.getParameter("cid"));
 			set.setSection(request.getParameter("section"));
-			try {
-				if(DBManager.isAdmin(netid) == 1){
-					String tidString[] = request.getParameter("tid").split(" ");
-					String tid = tidString[2];
-					set.setNetid(tid);
-				}
-				else
-					set.setNetid(netid);
-			} catch (ClassNotFoundException | SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			set.setRoomSize(request.getParameter("rmsize"));
-			System.out.println("TID: "+set.getNetid());
+			set.setNetid(tid);
 			
 			try {
-				addedCourse = DBManager.update(null, "addCourse", set);
-				//DBManager.update(set.getNetid(), "teachesCourse", set);
+				DBManager.update(null, "addCourse", set);
+				DBManager.update(tid, "teachesCourse", set);
 			} catch (ClassNotFoundException | SQLException e) {
 				String nuMessage = "That course already exists!";
 				request.setAttribute("nuMessage", nuMessage);
-				request.getRequestDispatcher("./Professor/ProfNewCourse.jsp").forward(request, response);
-				e.printStackTrace();
+				request.getRequestDispatcher("./admin/NewCourse.jsp").forward(request, response);
+				x = 1;
 			}
-			if (addedCourse){
-				try {
-					DBManager.generateSpns(cid, Integer.parseInt(section));
-				} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			request.getRequestDispatcher("/admin/CoursePrereqs.jsp").forward(request, response);
+			if (x == 0)
+				request.getRequestDispatcher("/admin/CoursePrereqs.jsp").forward(request, response);
 		}//ENDELSE
 	}
 }

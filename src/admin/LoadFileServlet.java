@@ -1,4 +1,4 @@
-package Admin;
+package admin;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
-import com.spdb.DBManager;
-import com.spdb.GetsSets;
+import utility.DBManager;
+import utility.GetsSets;
 
 /**
  * Servlet implementation class LoadFileServlet

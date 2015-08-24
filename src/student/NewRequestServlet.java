@@ -1,4 +1,4 @@
-package Student;
+package student;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utility.*;
+
 import java.util.*;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
-import com.spdb.*;
 
 /**
  * Servlet implementation class NewRequestServlet

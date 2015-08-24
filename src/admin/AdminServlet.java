@@ -1,4 +1,4 @@
-package Admin;
+package admin;
 
 import java.io.IOException;
 import java.sql.*;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.spdb.DBConnection;
-import com.spdb.DBManager;
+import utility.DBConnection;
+import utility.DBManager;
 
 /**
  * Servlet implementation class AdminServlet

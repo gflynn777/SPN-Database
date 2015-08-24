@@ -1,4 +1,4 @@
-package com.spdb;
+package utility;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

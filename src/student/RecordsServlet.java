@@ -1,4 +1,4 @@
-package Student;
+package student;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.spdb.DBManager;
-import com.spdb.GetsSets;
+import utility.DBManager;
+import utility.GetsSets;
 
 
 /**
