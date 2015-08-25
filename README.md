@@ -10,7 +10,7 @@ from professors to enroll in classes. It starts off at the main login screen.
 If a user does not have an account they may create one. For demonstration purposes, the option is given to create an
 account for a Student or a Professor. Upon account creation, a netid is generated with the
 first letter of the user's first and last names. The next available number is then affixed to the end of of the id.
-<br>
+<br><br>
 The appropriate "Welcome Page" is loaded based on whether the user is a student, professor, or admin. 
 <br>
 # Student Page
